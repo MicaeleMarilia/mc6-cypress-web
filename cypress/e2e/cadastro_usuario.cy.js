@@ -22,85 +22,50 @@ describe('Cadastro do usuario', () =>{
 
     it('Cadastro com sucesso', ()=>{
 
-        cy.get('#user').type(user)
-        cy.get('#email').type(email)
-        cy.get('#password').type(password)
-        cy.get('#btnRegister').click()
+        cy.preencherNome(user)
+        cy.preencherEmail(email)
+        cy.preencherSenha(password)
+        cy.clicarCadastrar()
 
-        //Validar
-        cy.get('#swal2-title')
-            .should('have.text', 'Cadastro realizado!')
-            .should('be.visible')
+        cy.validarCadastro(user)
 
-        cy.get('#swal2-html-container')
-            .should('have.text', `Bem-vindo ${user}`)
-            .should('be.visible')
     })
 
     it('Cadastro nome vazio', ()=>{
         
-        cy.get('#email').type('mica@gmail.com')
-        cy.get('#password').type(auth.password) //Utilizando de um arquivo json em fixtures
-        cy.get('#btnRegister').click()
-
-        //Validar
-        cy.get('.errorLabel')
-            .should('have.text', 'O campo nome deve ser prenchido')
-            .should('be.visible')
+        cy.preencherEmail(email)
+        cy.preencherSenha(password)
+        cy.clicarCadastrar()
+        cy.validarNome()
 
     })
 
     it('Cadastro email vazio', ()=>{
 
-        cy.get('#user').type('Micaele Marilia')
-        cy.get('#password').type(123456)
-        cy.get('#btnRegister').click()
-
-        //Validar
-        cy.get('.errorLabel')
-            .should('have.text', 'O campo e-mail deve ser prenchido corretamente')
-            .should('be.visible')
+        cy.preencherNome(user)
+        cy.preencherSenha(password)
+        cy.clicarCadastrar()
+        cy.validarEmail()
         
     })
 
     it('Cadastro senha vazia', ()=>{
 
-        cy.get('#user').type('Micaele Marilia')
-        cy.get('#email').type('mica@gmail.com')
-        cy.get('#btnRegister').click()
+        cy.preencherNome(user)
+        cy.preencherEmail(email)
+        cy.clicarCadastrar()
+        cy.validarSenha()
 
-        //Validar
-        cy.get('.errorLabel')
-            .should('have.text', 'O campo senha deve ter pelo menos 6 dígitos')
-            .should('be.visible')
-       
     })
 
     it('Cadastro email invalido', ()=>{
 
-        cy.get('#user').type('Micaele Marilia')
-        cy.get('#email').type('emailinvalido@')
-        cy.get('#password').type(123456)
-        cy.get('#btnRegister').click()
-
-        //Validar
-        cy.get('.errorLabel')
-            .should('have.text', 'O campo e-mail deve ser prenchido corretamente')
-            .should('be.visible')
-
+        cy.validarEmailInvalido(user, password)
     })
 
     it('Cadastro senha invalida', ()=>{
 
-        cy.get('#user').type('Micaele Marilia')
-        cy.get('#email').type('mica@gmail.com')
-        cy.get('#password').type(password = faker.internet.password({length: 3}))
-        cy.get('#btnRegister').click()
-
-        //Validar
-        cy.get('.errorLabel')
-            .should('have.text', 'O campo senha deve ter pelo menos 6 dígitos')
-            .should('be.visible')
+        cy.validarSenhaInvalida(user, email)
 
     })
 
