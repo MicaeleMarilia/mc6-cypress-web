@@ -1,4 +1,4 @@
 # Node
 node_modules/
-cypress/e2e/comandos_basicos.cy.js/
+cypress/e2e/comandos_basicos.cy.js
 screenshots/
