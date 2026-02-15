@@ -1,4 +1,4 @@
-name: Pipeline PR
+name: Pipeline Agendada
 on: 
     schedule:
         - cron: "30 * * * 1-5" 
