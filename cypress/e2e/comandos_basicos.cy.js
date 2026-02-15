@@ -1,5 +1,7 @@
 /// <reference types="cypress"/>
 
+// Local
+
 describe('Comandos basicos', () => {
 
     it('Abrir uma URL', () => {
