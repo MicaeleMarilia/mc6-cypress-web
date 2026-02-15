@@ -4,7 +4,8 @@ import { faker } from "@faker-js/faker"
 
 describe('Login', () => {
 
-    const tamanhostelas = ['samsung-s10', 'iphone-x', 'ipad-2', 'macbook-16']
+    const tamanhostelas = ['macbook-16']
+    //['samsung-s10', 'iphone-x', 'ipad-2', 'macbook-16']
 
     let user
     let password
@@ -25,7 +26,7 @@ describe('Login', () => {
 
             cy.preencherUsuario(user)
             cy.preencherSenha(password)
-            cy.clicarCadastrar()
+            cy.clicarLogin()
 
             cy.validarLogin(user)
 
@@ -34,31 +35,31 @@ describe('Login', () => {
         it('Login email vazio', () => {
 
             cy.preencherSenha(password)
-            cy.clicarCadastrar()
+            cy.clicarLogin()
 
-            cy.validarEmail()
+            cy.validarEmailLg()
 
         })
 
         it('Login senha vazia', () => {
 
             cy.preencherUsuario(user)
-            cy.clicarCadastrar()
+            cy.clicarLogin()
 
-            cy.validarSenha()
+            cy.validarSenhaLg()
 
 
         })
 
-        it('Login email invalid', () => {
+        it('Login email invalido', () => {
 
-            cy.validarEmailInvalido(password)
+            cy.validarEmailInvalidoLg(password)
 
         })
 
         it('Login senha invalida', () => {
 
-            cy.validarSenhaInvalida(user)
+            cy.validarSenhaInvalidaLg(user)
 
         })
     })

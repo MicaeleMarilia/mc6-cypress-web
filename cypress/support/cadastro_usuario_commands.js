@@ -1,6 +1,6 @@
 /// <reference types="cypress"/>
 
-Cypress.Commands.add('preencherNome', (user) => {
+Cypress.Commands.add('preencherUsuario', (user) => {
     cy.get('#user').type(user)
 })
 
@@ -27,7 +27,7 @@ Cypress.Commands.add('validarCadastro', (user) => {
 })
 
 Cypress.Commands.add('cadastrarUsuario', (user, email, password) => {
-    cy.preencherNome(user)
+    cy.preencherUsuario(user)
     cy.preencherEmail(email)
     cy.preencherSenha(password)
     cy.clicarCadastrar()
@@ -41,33 +41,33 @@ Cypress.Commands.add('validarNome', () => {
         .should('be.visible')
 })
 
-Cypress.Commands.add('validarEmail', () => {
+Cypress.Commands.add('validarEmailCad', () => {
     cy.get('.errorLabel')
         .should('have.text', 'O campo e-mail deve ser prenchido corretamente')
         .should('be.visible')
 })
 
-Cypress.Commands.add('validarSenha', () => {
+Cypress.Commands.add('validarSenhaCad', () => {
     cy.get('.errorLabel')
         .should('have.text', 'O campo senha deve ter pelo menos 6 dígitos')
         .should('be.visible')
 })
 
-Cypress.Commands.add('validarEmailInvalido', (user, password) => {
-    cy.preencherNome(user)
+Cypress.Commands.add('validarEmailInvalidoCad', (user, password) => {
+    cy.preencherUsuario(user)
     cy.preencherEmail('emailinvalido@')
     cy.preencherSenha(password)
     cy.clicarCadastrar()
 
-    cy.validarEmail()
+    cy.validarEmailCad()
 
 })
 
-Cypress.Commands.add('validarSenhaInvalida', (user, email) => {
-    cy.preencherNome(user)
+Cypress.Commands.add('validarSenhaInvalidaCad', (user, email) => {
+    cy.preencherUsuario(user)
     cy.preencherEmail(email)
     cy.preencherSenha('123')
     cy.clicarCadastrar()
-    cy.validarSenha()
+    cy.validarSenhaCad()
 
 })
