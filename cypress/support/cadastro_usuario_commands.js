@@ -35,7 +35,7 @@ Cypress.Commands.add('cadastrarUsuario', (user, email, password) => {
     cy.validarCadastro(user)
 })
 
-Cypress.Commands.add('validarNome', () => {
+Cypress.Commands.add('validarUsuario', () => {
     cy.get('.errorLabel')
         .should('have.text', 'O campo nome deve ser prenchido')
         .should('be.visible')

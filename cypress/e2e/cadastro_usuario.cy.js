@@ -36,7 +36,7 @@ describe('Cadastro do usuario', () =>{
         cy.preencherEmail(email)
         cy.preencherSenha(password)
         cy.clicarCadastrar()
-        cy.validarNome()
+        cy.validarUsuario()
 
     })
 
