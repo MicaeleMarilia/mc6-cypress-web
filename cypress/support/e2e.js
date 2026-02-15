@@ -17,3 +17,4 @@
 import './commands'
 import './cadastro_usuario_commands'
 import './login_commands'
+import './checkout_commands'
