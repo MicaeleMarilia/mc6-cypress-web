@@ -1,0 +1,19 @@
+name: Pipeline Agendada
+on: 
+    schedule:
+        - cron: "30 * * * 1-5" 
+
+jobs:
+    cypress-run: 
+        runs-on: ubuntu-latest 
+
+        steps: 
+          - name: Clonar o projeto
+            uses: actions/checkout@v6 
+
+          - name: Cypress runs-on
+            uses: cypress-io/github-action@v7 
+            with:
+                record: true 
+            env:
+                CYPRESS_RECORD_KEY: c16b0fd7-79b1-47bb-8732-d208cff0255c
